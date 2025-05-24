@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Modern Calculator</title>
+  <style>
+   
+  </style>
+</head>
+<body>
+ 
+  
+    
+     <input type="text" id="string-input" value="">
+     <button id="submit_btn">click ro revers</button>
+      <div id="result"></div>
+ 
+
+
+  <script>
+    //String
+
+    /* الخواص والدوال 
+    var title = "Hello World"
+    الدالة substring
+     تحتاج معلومات
+    console.log(title.length)
+   / لاستخراج جزء معين من النص */
+
+
+    /*
+       
+    var title = "Hello World"
+    // .toLowerCase()  .toUpperCase() .replace("H","t") دالة 
+    var titletolowercase = title.toLowerCase()
+    console.log(titletolowercase.replace("world","Nouf"))
+  
+  */
+  /*
+
+   var title = "hello"
+   var mychar = title.charAt(4)
+  // var mychar = title[0]
+   console.log(typeof mychar)
+
+
+  */
+  /*
+  var firstname = "Nouf"
+  var lastname = "Mohammmed"
+   console.log(`Hello ${firstname} ${lastname}`)
+ // console.log(firstname + lastname)
+
+ */
+
+  //challenge 1 ()
+
+  document.getElementById("submit_btn").addEventListener("click",function(){
+    console.log("click")
+
+    var words =  document.getElementById("string-input").value 
+      console.log( `${words}` )
+
+
+      document.getElementById("result").innerHTML = `${words}`
+     /*
+     var welcomewithreplace = newwelcometouppercased.replace("O" , "Y")
+      console.log(welcomewithreplace)
+
+      var welcomerevrse = welcomewithreplace.split("").reverse().join("")
+      console.log(welcomerevrse)
+        
+   */
+  })
+
+
+ 
+
+
+  /*
+ // Original text
+let text = "welcome";
+
+// 1. Convert the string into an array of characters using split("")
+// split("") breaks the string into an array where each character becomes an individual element
+let array = text.split(""); 
+console.log("Step 1 - Convert the string to an array:", array); 
+// Output: ['w', 'e', 'l', 'c', 'o', 'm', 'e']
+
+// 2. Reverse the array of characters using reverse()
+// reverse() reverses the order of the elements in the array
+let reversedArray = array.reverse();
+console.log("Step 2 - Reverse the array:", reversedArray); 
+// Output: ['e', 'm', 'o', 'c', 'l', 'e', 'w']
+
+// 3. Combine the reversed characters into a string using join("")
+// join("") merges all elements in the array into a single string
+let reversedText = reversedArray.join("");
+console.log("Step 3 - Convert the array back to a reversed string:", reversedText); 
+// Output: "emoclew"
+
+// 4. A shorthand way to do all the steps in one line
+let reversedTextShort = text.split("").reverse().join("");
+console.log("Final output using shorthand:", reversedTextShort); 
+// Output: "emoclew"
+ */
+   
+  </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #Arry-input{
+
+            font-size: larger;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+             text-align: center;
+             margin-top: 100px;
+            background-color: rgb(217, 119, 247);
+            padding: 100px;
+  
+        }   
+
+</style>
+<body> 
+
+    <diV id="Arry-input">
+
+   
+    <input type="text" placeholder="Enter Name" id="Input-Array">
+    <button id="Submit">Submit</button>
+    <button id="delete">delete</button>
+
+    </diV>
+
+    <div id="result"></div>
+
+
+</body>
+
+<script>
+    let Array=[]
+
+    document.getElementById("Submit").addEventListener("click" ,function(){
+           let InputArray = document.getElementById("Input-Array").value
+           Array.push(InputArray)
+           console.log(Array)
+           document
+
+           document.getElementById("delete").addEventListener("click" , function() {
+            Array.pop(InputArray)
+           console.log(Array)
+        
+    }) 
+
+
+    })
+  
+
+  
+
+
+</script>
+
+
+
+
+
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    
+body {
+    background: #f5f7fa;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 400px;
+    margin: 60px auto;
+    padding: 30px 25px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+label {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    display: block;
+    color: #333;
+}
+
+input[type="text"], input[type="number"] {
+    width: 80%;
+    padding: 8px 10px;
+    margin: 12px 0;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: border 0.2s;
+}
+
+input[type="text"]:focus, input[type="number"]:focus {
+    border: 1.5px solid #007bff;
+    outline: none;
+}
+
+button {
+    padding: 8px 18px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+#result {
+    margin-top: 18px;
+    font-size: 1.15em;
+    color: #222;
+    font-weight: bold;
+}
+
+</style>
+<body>
+
+    <!--
+    Create a simple web page where the user enters their birth year in an input box.
+     When they click a button, display their age in years below the button.
+     -->
+
+
+     <label>Enter your birth year</label>
+     <input type="text" placeholder="Enter your birth year" id="yearOfBirth" required>
+     <button id="btn-For-Year">Click</button>
+
+     <div id="result"></div>
+    
+
+</body>
+
+<script>
+
+    document.getElementById("btn-For-Year").addEventListener("click",function(){
+        let yearOfBirth = document.getElementById("yearOfBirth").value
+            let currentYear = new Date().getFullYear();
+            let age = currentYear - yearOfBirth;
+
+                     document.getElementById("result").innerHTML=`your age is ${age}`
+
+
+    })
+
+
+
+
+</script>
+
+
+
+
+</html>

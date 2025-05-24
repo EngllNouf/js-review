@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+ <label>الوزن</label>
+ <input type="text" placeholder="الوزن" id="weight">
+
+ <br>
+
+  <label>الطول</label>
+   <input type="text" placeholder="الطول" id="height">
+
+  
+   <button id="btn-BMI" >حساب</button>
+
+   <div id="result"></div>
+
+   <script>
+    //حنسوي صفحة لحساب ال bmi 
+    // راح اشتغل على المعادلات اول شي 
+    //وزن وطول بالمتر وزر حساب 
+    // دا  المثال استخدمت سوتش بس كان المفترض استخدم  if
+     document.getElementById("btn-BMI").addEventListener("click" , function (){
+             var weight = document.getElementById("weight").value ;
+             var height = document.getElementById("height").value ;
+
+            
+
+    BMI = weight / ( height * height )
+
+    console.log (`BMI IS ${BMI}`)
+
+      switch(true){
+        case  BMI >= 18 && BMI <= 24.9 :
+            var message = "Normal weight"
+                 console.log(message)
+            break
+
+            case  BMI >= 25 && BMI <= 29.9 :
+                   var message = "Overweight"
+                 console.log(message)
+
+            break
+
+             case  BMI >= 30 && BMI <= 34.9 :
+                   var message = "Obesity (Class 1)"
+                   console.log(message)
+            break
+
+             case  BMI >= 35 && BMI <= 39.9 :
+                  var message = "Obesity (Class 2)"
+                   console.log(message)
+            break
+
+            default :
+              var message = "Extreme obesity (Class 3)"
+                   console.log(message)
+
+
+
+      }
+     
+     document.getElementById("result").innerHTML = `${message}` ;
+
+    })
+
+
+
+
+
+   </script>
+</body>
+</html>
