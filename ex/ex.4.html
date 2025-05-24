@@ -35,23 +35,27 @@
 </body>
 
 <script>
-    let Array=[]
+    let ArrayForStu=[]
 
     document.getElementById("Submit").addEventListener("click" ,function(){
            let InputArray = document.getElementById("Input-Array").value
-           Array.push(InputArray)
-           console.log(Array)
-           document
+           ArrayForStu.push(InputArray)
+          // console.log(Array)
+           document.getElementById("result").innerHTML= ArrayForStu
 
-           document.getElementById("delete").addEventListener("click" , function() {
-            Array.pop(InputArray)
-           console.log(Array)
-        
+          
+
     }) 
 
+    let InputArray = document.getElementById("Input-Array").value
 
-    })
+     document.getElementById("delete").addEventListener("click" , function() {
+            ArrayForStu.pop(InputArray)
+           console.log(ArrayForStu)
+         document.getElementById("result").innerHTML= ArrayForStu
+         
   
+    }) 
 
   
 
