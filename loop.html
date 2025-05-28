@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+
+
+    <!--js loop 
+     for 
+     
+      for in 
+      for of 
+     while 
+
+    
+    -->
+    
+</body>
+
+
+<script>
+
+                        // طباعة الأرقام من 1 إلى 10
+                    for (let i = 1; i <= 10; i++) {
+                    console.log("الرقم هو:", i); // يطبع كل رقم من 1 إلى 10
+                    }
+
+                    /*
+                    شرح الكود:
+                    1. let i = 1: يبدأ المؤشر i بالقيمة 1.
+                    2. i <= 10: تستمر الحلقة طالما أن i أقل من أو يساوي 10.
+                    3. i++: يتم زيادة قيمة i بمقدار 1 بعد كل دورة.
+                    4. console.log(): طباعة قيمة i في كل دورة.
+                    */
+
+                            // تعريف كائن يحتوي على معلومات شخص
+                const person = { name: "Ali", age: 25, city: "Riyadh" };
+
+                // المرور على خصائص الكائن person
+                for (let key in person) {
+                console.log(key + ": " + person[key]); // طباعة المفتاح والقيمة
+                }
+
+                /*
+                شرح الكود:
+                1. الكائن person يحتوي على خصائص (name, age, city) مع قيمها.
+                2. for (let key in person): تمر الحلقة على جميع مفاتيح الكائن.
+                3. key: يمثل كل مفتاح في الكائن (name, age, city).
+                4. person[key]: يتم استخدام المفتاح للوصول إلى القيمة المقابلة له.
+                الناتج:
+                name: Ali
+                age: 25
+                city: Riyadh
+                */
+
+                  // تعريف مصفوفة تحتوي على أسماء
+
+                const fruits = ["Apple", "Banana", "Cherry"];
+
+                // المرور على القيم مباشرة
+                for (let fruit of fruits) {
+                console.log("الفاكهة هي:", fruit); // طباعة كل عنصر في المصفوفة
+                }
+
+                /*
+                شرح الكود:
+                1. المصفوفة fruits تحتوي على ثلاثة عناصر.
+                2. for (let fruit of fruits): تمر الحلقة مباشرة على القيم في المصفوفة.
+                3. fruit: يمثل كل عنصر في المصفوفة (Apple, Banana, Cherry).
+                الناتج:
+                الفاكهة هي: Apple
+                الفاكهة هي: Banana
+                الفاكهة هي: Cherry
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</html>
