@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Student</title>
+    <style>
+        /* تنسيق العنوان */
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            font-family: Arial, sans-serif;
+        }
+
+        /* تنسيق الحقل والزر */
+        input[type="text"] {
+            display: block;
+            margin: 20px auto;
+            padding: 10px;
+            width: 80%;
+            max-width: 300px;
+            border: 2px solid #4CAF50;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            display: block;
+            margin: 0 auto;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* تنسيق النص الناتج */
+        #namesofStu {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Find Student</h1>
+    <input type="text" placeholder="Enter Name" id="Stu-name">
+    <button id="Btn-click">Search</button>
+
+    <h3 id="namesofStu" style="color: blue;"></h3>
+    
+</body>
+
+<script>
+    // قائمة أسماء الطلاب
+    let names = [
+        "Ahmed",
+        "Sarah",
+        "Khalid",
+        "Nouf",
+        "Mona",
+        "Faisal",
+        "Layla",
+        "Abdullah",
+        "Reem",
+        "Hassan",
+        "Noura",
+        "Omar",
+        "Fatimah",
+        "Yousef",
+        "Aisha"
+    ];
+
+    // عرض جميع الأسماء في النص الناتج
+    document.getElementById("namesofStu").innerHTML += `${names.join("-- ")}`;
+
+    // إضافة حدث عند النقر على زر البحث
+    document.getElementById("Btn-click").addEventListener("click", function () {
+        let StuName = document.getElementById("Stu-name").value.trim(); // الحصول على الاسم وإزالة المسافات الزائدة
+        let result = names.includes(StuName); // التحقق إذا كان الاسم موجودًا
+
+        if (result) {
+            console.log("The name is found");
+            document.getElementById("namesofStu").innerHTML = `<span style="color: green;">The name "${StuName}" is found!</span>`;
+        } else {
+            console.log("The name is not found");
+            document.getElementById("namesofStu").innerHTML = `<span style="color: red;">The name "${StuName}" is not found!</span>`;
+        }
+    });
+</script>
+</html>
