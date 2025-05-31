@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding style.display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #myText {
+            color: white;
+            background-color: blue;
+            padding: 15px;
+            border-radius: 5px;
+            display: block; /* العنصر ظاهر بشكل افتراضي */
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #444;
+            color: white;
+        }
+        button:hover {
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- عنصر سيظهر أو يختفي -->
+    <p id="myText">Hello! I am a paragraph that you can show or hide.</p>
+
+    <!-- أزرار التحكم -->
+    <button id="hideButton">Hide Text</button>
+    <button id="showButton">Show Text</button>
+    <button id="toggleButton">Toggle Text</button>
+
+    <script>
+        // الحصول على العناصر من الـ HTML
+        const myText = document.getElementById("myText"); // العنصر الذي سيتم التحكم في عرضه
+        const hideButton = document.getElementById("hideButton"); // زر الإخفاء
+        const showButton = document.getElementById("showButton"); // زر الإظهار
+        const toggleButton = document.getElementById("toggleButton"); // زر التبديل
+
+        // عند الضغط على "Hide Text"
+        hideButton.addEventListener("click", function () {
+            myText.style.display = "none"; // إخفاء العنصر
+        });
+
+        // عند الضغط على "Show Text"
+        showButton.addEventListener("click", function () {
+            myText.style.display = "block"; // إظهار العنصر كعنصر كتلة
+        });
+
+        // عند الضغط على "Toggle Text"
+        toggleButton.addEventListener("click", function () {
+            // إذا كان العنصر مخفيًا، أظهره
+            if (myText.style.display === "none") {
+                myText.style.display = "block";
+            } else {
+                // إذا كان العنصر ظاهرًا، أخفه
+                myText.style.display = "none";
+            }
+        });
+    </script>
+</body>
+</html>

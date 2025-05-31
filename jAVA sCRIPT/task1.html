@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        /* تنسيق الصفحة */
+        body {
+            background-color: #1e1e2f; /* خلفية داكنة */
+            color: #f5f6fa; /* لون النص */
+            font-family: 'Arial', sans-serif; /* نوع الخط */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* ملء الشاشة بالكامل */
+        }
+
+        /* الحاوية الرئيسية */
+        .background-for-todo {
+            background-color: #2f3640; /* خلفية داكنة للحاوية */
+            width: 90%;
+            max-width: 600px; /* عرض الحاوية */
+            padding: 20px 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* تأثير الظلال */
+            text-align: center;
+        }
+
+        /* العنوان */
+        h1 {
+            color: #e1b12c; /* لون مميز للعنوان */
+            margin-bottom: 20px;
+        }
+
+        /* مربع الإدخال */
+        input[type="text"] {
+            width: 70%; /* عرض الإدخال */
+            padding: 10px;
+            border: 2px solid #353b48; /* حدود الإدخال */
+            border-radius: 8px;
+            outline: none;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            background-color: #dcdde1; /* خلفية الإدخال */
+            color: #2f3640; /* لون النص */
+        }
+
+        /* زر الإضافة */
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: #44bd32; /* لون الزر */
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        /* قائمة المهام */
+        ul {
+            list-style: none; /* إزالة النقاط */
+            padding: 0;
+        }
+
+        li {
+            background-color: #353b48; /* خلفية المهام */
+            color: white;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* زر الحذف */
+        li button {
+            background-color: #e84118; /* لون زر الحذف */
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* رسالة "لا توجد مهام" */
+        #no-tasks {
+            color: #c8d6e5; /* لون النص */
+            margin-top: 15px;
+            font-style: italic; /* نص مائل */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-for-todo">
+        <h1>To-Do List</h1>
+        <!-- مربع إدخال النص -->
+        <input type="text" id="task" placeholder="Enter your task">
+        <!-- زر لإضافة مهمة -->
+        <button id="Add-task">Add Task</button>  
+
+        <!-- قائمة المهام -->
+        <ul id="task-list">
+            <!-- المهام ستظهر هنا -->
+        </ul>
+
+        <!-- رسالة عند عدم وجود مهام -->
+        <p id="no-tasks">No tasks available currently.</p>
+    </div>
+
+    <script>
+        // مصفوفة لتخزين المهام
+        let taskArray = [];
+
+        // الحصول على العناصر من الصفحة
+        const taskInput = document.getElementById("task"); // مربع الإدخال
+        const addTaskButton = document.getElementById("Add-task"); // زر الإضافة
+        const taskList = document.getElementById("task-list"); // قائمة المهام
+        const noTasksMessage = document.getElementById("no-tasks"); // رسالة "لا توجد مهام"
+
+        // إخفاء رسالة "لا توجد مهام" إذا كانت هناك مهام
+        if (taskArray.length === 0) {
+            noTasksMessage.style.display = "block"; // إظهار الرسالة
+        } else {
+            noTasksMessage.style.display = "none"; // إخفاء الرسالة
+        }
+
+        // حدث عند الضغط على زر الإضافة
+        addTaskButton.addEventListener("click", function () {
+            const task = taskInput.value.trim(); // قراءة النص من مربع الإدخال مع إزالة الفراغات
+
+            // التحقق إذا كان النص فارغًا
+            if (task === "") {
+                alert("Please enter a task!"); // رسالة تنبيه
+                return; // إنهاء العملية
+            }
+
+            // إضافة المهمة إلى المصفوفة
+            taskArray.push(task);
+
+            // تفريغ قائمة المهام مافهمت
+            taskList.innerHTML = "";
+
+            // عرض المهام من المصفوفة
+            for (let i = 0; i < taskArray.length; i++) {
+                // إنشاء عنصر <li> جديد لكل مهمة
+                const listItem = document.createElement("li");
+                listItem.textContent = taskArray[i]; // النص = المهمة
+
+                // إنشاء زر "حذف"
+                const deleteButton = document.createElement("button");
+                deleteButton.textContent = "X"; // النص داخل الزر
+                deleteButton.addEventListener("click", function () {
+                    // حذف المهمة من المصفوفة
+                    taskArray.splice(i, 1); // حذف المهمة بناءً على الفهرس
+                    listItem.remove(); // إزالة العنصر من الصفحة
+
+                    // إذا أصبحت المصفوفة فارغة، أظهر رسالة "لا توجد مهام"
+                    if (taskArray.length === 0) {
+                        noTasksMessage.style.display = "block";
+                    }
+                });
+
+                // إضافة الزر إلى العنصر <li>
+                listItem.appendChild(deleteButton);
+                // إضافة العنصر <li> إلى قائمة المهام
+                taskList.appendChild(listItem);
+            }
+
+            // إخفاء رسالة "لا توجد مهام" لأننا أضفنا مهمة
+            noTasksMessage.style.display = "none";
+
+            // تفريغ مربع الإدخال
+            taskInput.value = "";
+        });
+    </script>
+
+</body>
+</html>

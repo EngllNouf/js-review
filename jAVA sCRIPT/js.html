@@ -1,0 +1,1094 @@
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Introduction - NAZ Programming</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        :root {
+            --primary: #f7df1e;
+            --secondary: #323330;
+            --background: #f8fafc;
+            --text: #1e293b;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--primary);
+            padding: 5px 15px;
+            border-radius: 8px;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 0;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            height: calc(100vh - 120px);
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            overflow-y: auto;
+        }
+
+        .sidebar-links {
+            list-style: none;
+        }
+
+        .sidebar-links li {
+            margin-bottom: 1rem;
+        }
+
+        .sidebar-links a {
+            text-decoration: none;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .sidebar-links a:hover {
+            background: var(--primary);
+            color: var(--secondary);
+        }
+
+        .content-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .lesson-title {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 4px solid var(--primary);
+        }
+
+        .code-example {
+            background: #1e1e1e;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            overflow: hidden;
+        }
+
+        .code-header {
+            background: #323330;
+            padding: 0.75rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        .code-content {
+            padding: 1.5rem;
+            overflow-x: auto;
+        }
+
+        .interactive-demo {
+            background: linear-gradient(135deg, rgba(247, 223, 30, 0.1) 0%, rgba(50, 51, 48, 0.1) 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+
+        .demo-output {
+            background: #1e1e1e;
+            color: #fff;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: monospace;
+            margin-top: 1rem;
+            min-height: 100px;
+        }
+
+        .note {
+            background: #fefce8;
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .tip {
+            background: #f0fdf4;
+            border-left: 4px solid #22c55e;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .button {
+            background: var(--primary);
+            color: var(--secondary);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(247, 223, 30, 0.3);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .concept-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+
+        .concept-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="#" class="logo">
+                <i class="fab fa-js"></i>
+                JavaScript with NAZ
+            </a>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <aside class="sidebar">
+            <ul class="sidebar-links">
+                <li><a href="#intro"><i class="fas fa-flag"></i> Introduction</a></li>
+                <li><a href="#basics"><i class="fas fa-code"></i> Basic Concepts</a></li>
+                <li><a href="#variables"><i class="fas fa-box"></i> Variables</a></li>
+                <li><a href="#data-types"><i class="fas fa-list"></i> Data Types</a></li>
+                <li><a href="#operators"><i class="fas fa-calculator"></i> Operators</a></li>
+                <li><a href="#control-flow"><i class="fas fa-random"></i> Control Flow</a></li>
+                <li><a href="#functions"><i class="fas fa-function"></i> Functions</a></li>
+                <li><a href="#objects"><i class="fas fa-cube"></i> Objects</a></li>
+                <li><a href="#arrays"><i class="fas fa-layer-group"></i> Arrays</a></li>
+                <li><a href="#dom"><i class="fas fa-file-code"></i> DOM</a></li>
+            </ul>
+        </aside>
+
+        <main class="content-section">
+            <section id="intro" data-aos="fade-up">
+                <h1 class="lesson-title">Introduction to JavaScript</h1>
+                <p>JavaScript is a versatile programming language that powers the modern web. It allows you to create interactive websites, build web applications, develop server-side programs, and even create mobile apps.</p>
+
+                <div class="note">
+                    <strong>Fun Fact:</strong> Despite its name, JavaScript has no direct relationship with Java. The naming was primarily a marketing decision!
+                </div>
+
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <h3><i class="fas fa-globe"></i> Client-Side Scripting</h3>
+                        <p>Run code in the browser to create dynamic web pages</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3><i class="fas fa-server"></i> Server-Side Development</h3>
+                        <p>Build backend applications with Node.js</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3><i class="fas fa-mobile-alt"></i> Mobile Development</h3>
+                        <p>Create mobile apps with frameworks like React Native</p>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span>Your First JavaScript Code</span>
+                    </div>
+                    <div class="code-content">
+                        <pre><code class="language-javascript">
+// This is a comment
+console.log("Hello, World!"); // Outputs: Hello, World!
+
+// Variables
+let name = "NAZ";
+console.log("Welcome, " + name); // Outputs: Welcome, NAZ
+
+// Simple function
+function greet(userName) {
+    return "Hello, " + userName + "!";
+}
+
+// Using the function
+let greeting = greet("Student");
+console.log(greeting); // Outputs: Hello, Student!
+                        </code></pre>
+                    </div>
+                </div>
+
+                <div class="interactive-demo">
+                    <h3>Try It Yourself!</h3>
+                    <p>Type your name below and see JavaScript in action:</p>
+                    <input type="text" id="nameInput" placeholder="Enter your name" style="padding: 8px; margin: 10px 0; border-radius: 4px; border: 1px solid #ddd;">
+                    <button onclick="showGreeting()" class="button">Run Code</button>
+                    <div class="demo-output" id="demoOutput">// Output will appear here</div>
+                </div>
+
+                <div class="tip">
+                    <strong>Pro Tip:</strong> The best way to learn JavaScript is by practicing. Try modifying the examples and see what happens!
+                </div>
+            </section>
+
+            <section id="basics" data-aos="fade-up">
+                <h2 class="lesson-title">Basic Concepts</h2>
+                <p>Let's explore the fundamental concepts that form the building blocks of JavaScript programming.</p>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span>Basic Syntax Examples</span>
+                    </div>
+                    <div class="code-content">
+                        <pre><code class="language-javascript">
+// Variables and Data Types
+let message = "Hello";    // String
+let number = 42;          // Number
+let isTrue = true;        // Boolean
+let nothing = null;       // Null
+let undefined;            // Undefined
+
+// Simple calculations
+let sum = 10 + 5;
+let product = 6 * 7;
+
+// String concatenation
+let firstName = "John";
+let lastName = "Doe";
+let fullName = firstName + " " + lastName;
+
+// Modern string interpolation
+let greeting = `Hello, ${firstName}!`;
+                        </code></pre>
+                    </div>
+                </div>
+            </section>
+            <!-- Add this inside the main content-section, after the previous sections -->
+
+            <section id="variables" data-aos="fade-up">
+                <h2 class="lesson-title">Variables & Data Types</h2>
+                <p>Variables are containers for storing data values. JavaScript provides several ways to declare variables.</p>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span>Variable Declaration</span>
+                    </div>
+                    <div class="code-content">
+                        <pre><code class="language-javascript">
+// Modern variable declarations
+let name = "John";          // Can be reassigned
+const age = 25;            // Cannot be reassigned
+var oldWay = "Not recommended"; // Old way (avoid)
+
+// Let's try changing values
+name = "Jane";      // This works
+// age = 26;       // This would cause an error
+                        </code></pre>
+                    </div>
+                </div>
+
+                <div class="interactive-demo">
+                    <h3>Try Variable Declaration</h3>
+                    <input type="text" id="varInput" placeholder="Enter a value" style="padding: 8px; margin: 10px 0; border-radius: 4px; border: 1px solid #ddd;">
+                    <button onclick="tryVariable()" class="button">Declare & Show</button>
+                    <div class="demo-output" id="varOutput">// Output will appear here</div>
+                </div>
+
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <h3>Data Types</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li><code>String</code> - Text</li>
+                            <li><code>Number</code> - Numbers</li>
+                            <li><code>Boolean</code> - true/false</li>
+                            <li><code>Object</code> - Complex data</li>
+                            <li><code>Array</code> - Lists</li>
+                            <li><code>null</code> - Empty value</li>
+                            <li><code>undefined</code> - No value assigned</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="operators" data-aos="fade-up">
+                <h2 class="lesson-title">Operators</h2>
+                <p>Operators perform operations on variables and values.</p>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span>Common Operators</span>
+                    </div>
+                    <div class="code-content">
+                        <pre><code class="language-javascript">
+// Arithmetic Operators
+let sum = 5 + 3;       // Addition
+let difference = 10 - 4; // Subtraction
+let product = 6 * 2;    // Multiplication
+let quotient = 15 / 3;  // Division
+let remainder = 17 % 5; // Modulus
+
+// Comparison Operators
+let isEqual = 5 === 5;    // Strict equality
+let isNotEqual = 5 !== 3; // Strict inequality
+let isGreater = 10 > 5;   // Greater than
+let isLess = 3 < 7;      // Less than
+
+// Logical Operators
+let and = true && false;  // Logical AND
+let or = true || false;   // Logical OR
+let not = !true;         // Logical NOT
+                        </code></pre>
+                    </div>
+                </div>
+
+                <div class="interactive-demo">
+                    <h3>Calculator Demo</h3>
+                    <div style="display: flex; gap: 10px; margin: 10px 0;">
+                        <input type="number" id="num1" placeholder="First number" style="padding: 8px; border-radius: 4px; border: 1px solid #ddd;">
+                        <select id="operator" style="padding: 8px; border-radius: 4px; border: 1px solid #ddd;">
+                            <option value="+">+</option>
+                            <option value="-">-</option>
+                            <option value="*">×</option>
+                            <option value="/">÷</option>
+                        </select>
+                        <input type="number" id="num2" placeholder="Second number" style="padding: 8px; border-radius: 4px; border: 1px solid #ddd;">
+                        <button onclick="calculate()" class="button">Calculate</button>
+                    </div>
+                    <div class="demo-output" id="calcOutput">// Result will appear here</div>
+                </div>
+            </section>
+
+            <section id="control-flow" data-aos="fade-up">
+                <h2 class="lesson-title">Control Flow</h2>
+                <p>Control flow statements determine the order in which code is executed based on certain conditions.</p>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span>If Statements</span>
+                    </div>
+                    <div class="code-content">
+                        <pre><code class="language-javascript">
+// Basic if statement
+let age = 18;
+
+if (age >= 18) {
+    console.log("You are an adult");
+} else {
+    console.log("You are a minor");
+}
+
+// Multiple conditions
+let score = 85;
+
+if (score >= 90) {
+    console.log("Grade: A");
+} else if (score >= 80) {
+    console.log("Grade: B");
+} else if (score >= 70) {
+    console.log("Grade: C");
+} else {
+    console.log("Grade: F");
+}
+                        </code></pre>
+                    </div>
+                </div>
+
+                <div class="interactive-demo">
+                    <h3>Grade Calculator</h3>
+                    <input type="number" id="scoreInput" placeholder="Enter score (0-100)" min="0" max="100" style="padding: 8px; margin: 10px 0; border-radius: 4px; border: 1px solid #ddd;">
+                    <button onclick="calculateGrade()" class="button">Check Grade</button>
+                    <div class="demo-output" id="gradeOutput">// Grade will appear here</div>
+                </div>
+            </section>
+
+            <section id="functions" data-aos="fade-up">
+                <h2 class="lesson-title">Functions</h2>
+                <p>Functions are reusable blocks of code that perform specific tasks.</p>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span>Function Examples</span>
+                    </div>
+                    <div class="code-content">
+                        <pre><code class="language-javascript">
+// Regular function
+function greet(name) {
+    return "Hello, " + name + "!";
+}
+
+// Arrow function
+const add = (a, b) => a + b;
+
+// Function with default parameters
+function multiply(a, b = 1) {
+    return a * b;
+}
+
+// Function expression
+const square = function(x) {
+    return x * x;
+};
+
+// Using the functions
+console.log(greet("NAZ"));        // Hello, NAZ!
+console.log(add(5, 3));          // 8
+console.log(multiply(4));        // 4
+console.log(square(5));         // 25
+                        </code></pre>
+                    </div>
+                </div>
+
+                <div class="interactive-demo">
+                    <h3>Function Tester</h3>
+                    <input type="number" id="funcInput" placeholder="Enter a number" style="padding: 8px; margin: 10px 0; border-radius: 4px; border: 1px solid #ddd;">
+                    <button onclick="testFunctions()" class="button">Test Functions</button>
+                    <div class="demo-output" id="funcOutput">// Results will appear here</div>
+                </div>
+            </section>
+
+            <!-- Add this to your existing script section -->
+            <script>
+                function tryVariable() {
+                    const value = document.getElementById('varInput').value;
+                    const output = document.getElementById('varOutput');
+                    output.innerHTML = `let myVariable = "${value}";\n` +
+                                     `console.log(myVariable);\n\n` +
+                                     `// Output:\n${value}`;
+                }
+
+                function calculate() {
+                    const num1 = parseFloat(document.getElementById('num1').value);
+                    const num2 = parseFloat(document.getElementById('num2').value);
+                    const operator = document.getElementById('operator').value;
+                    const output = document.getElementById('calcOutput');
+                    
+                    let result;
+                    switch(operator) {
+                        case '+': result = num1 + num2; break;
+                        case '-': result = num1 - num2; break;
+                        case '*': result = num1 * num2; break;
+                        case '/': result = num1 / num2; break;
+                    }
+                    
+                    output.innerHTML = `${num1} ${operator} ${num2} = ${result}`;
+                }
+
+                function calculateGrade() {
+                    const score = parseInt(document.getElementById('scoreInput').value);
+                    const output = document.getElementById('gradeOutput');
+                    let grade;
+                    
+                    if (score >= 90) grade = 'A';
+                    else if (score >= 80) grade = 'B';
+                    else if (score >= 70) grade = 'C';
+                    else grade = 'F';
+                    
+                    output.innerHTML = `Score: ${score}\nGrade: ${grade}`;
+                }
+
+                function testFunctions() {
+                    const num = parseFloat(document.getElementById('funcInput').value);
+                    const output = document.getElementById('funcOutput');
+                    
+                    const squared = num * num;
+                    const doubled = num * 2;
+                    
+                    output.innerHTML = `Input: ${num}\n` +
+                                     `Squared: ${squared}\n` +
+                                     `Doubled: ${doubled}`;
+                }
+            </script>
+            <section id="arrays" data-aos="fade-up">
+                <h2 class="lesson-title">Arrays</h2>
+                <p>Arrays are ordered lists of values that can store multiple items in a single variable.</p>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span>Array Operations</span>
+                    </div>
+                    <div class="code-content">
+                        <pre><code class="language-javascript">
+// Creating arrays
+let fruits = ['apple', 'banana', 'orange'];
+let numbers = [1, 2, 3, 4, 5];
+
+// Accessing elements
+console.log(fruits[0]);     // 'apple'
+console.log(numbers[2]);    // 3
+
+// Array methods
+fruits.push('mango');      // Add to end
+fruits.pop();              // Remove from end
+fruits.unshift('grape');   // Add to start
+fruits.shift();            // Remove from start
+
+// Array operations
+let length = fruits.length;    // Array length
+let joined = fruits.join(', '); // Join elements
+let includes = fruits.includes('banana'); // Check if exists
+let found = fruits.find(fruit => fruit === 'apple'); // Find element
+                        </code></pre>
+                    </div>
+                </div>
+
+                <div class="interactive-demo">
+                    <h3>Array Manipulator</h3>
+                    <div style="display: flex; gap: 10px; margin: 10px 0;">
+                        <input type="text" id="arrayInput" placeholder="Enter an item" style="padding: 8px; border-radius: 4px; border: 1px solid #ddd;">
+                        <button onclick="addToArray()" class="button">Add Item</button>
+                        <button onclick="removeFromArray()" class="button" style="background: #ef4444;">Remove Last</button>
+                    </div>
+                    <div class="demo-output" id="arrayOutput">// Array: []</div>
+                </div>
+            </section>
+
+            <section id="objects" data-aos="fade-up">
+                <h2 class="lesson-title">Objects</h2>
+                <p>Objects are collections of related data and functionality stored in key-value pairs.</p>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span>Working with Objects</span>
+                    </div>
+                    <div class="code-content">
+                        <pre><code class="language-javascript">
+// Creating an object
+let person = {
+    name: 'John',
+    age: 25,
+    isStudent: true,
+    hobbies: ['reading', 'music'],
+    address: {
+        city: 'New York',
+        country: 'USA'
+    },
+    sayHello: function() {
+        return `Hello, my name is ${this.name}!`;
+    }
+};
+
+// Accessing properties
+console.log(person.name);        // 'John'
+console.log(person['age']);      // 25
+console.log(person.hobbies[0]);  // 'reading'
+console.log(person.sayHello());  // 'Hello, my name is John!'
+
+// Modifying objects
+person.age = 26;
+person.email = 'john@example.com';  // Add new property
+delete person.isStudent;            // Remove property
+                        </code></pre>
+                    </div>
+                </div>
+
+                <div class="interactive-demo">
+                    <h3>Person Object Builder</h3>
+                    <div style="display: grid; gap: 10px; margin: 10px 0;">
+                        <input type="text" id="personName" placeholder="Name" style="padding: 8px; border-radius: 4px; border: 1px solid #ddd;">
+                        <input type="number" id="personAge" placeholder="Age" style="padding: 8px; border-radius: 4px; border: 1px solid #ddd;">
+                        <input type="text" id="personCity" placeholder="City" style="padding: 8px; border-radius: 4px; border: 1px solid #ddd;">
+                        <button onclick="createPerson()" class="button">Create Person Object</button>
+                    </div>
+                    <div class="demo-output" id="objectOutput">// Person object will appear here</div>
+                </div>
+            </section>
+
+            <section id="dom" data-aos="fade-up">
+                <h2 class="lesson-title">DOM Manipulation</h2>
+                <p>The Document Object Model (DOM) allows JavaScript to interact with HTML elements on the page.</p>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span>DOM Operations</span>
+                    </div>
+                    <div class="code-content">
+                        <pre><code class="language-javascript">
+// Selecting elements
+let element = document.getElementById('myId');
+let elements = document.getElementsByClassName('myClass');
+let query = document.querySelector('.myClass');
+
+// Modifying elements
+element.innerHTML = 'New content';
+element.style.color = 'blue';
+element.classList.add('active');
+element.setAttribute('data-value', '123');
+
+// Creating elements
+let div = document.createElement('div');
+div.textContent = 'New Element';
+document.body.appendChild(div);
+
+// Event handling
+element.addEventListener('click', function(event) {
+    console.log('Element clicked!');
+});
+                        </code></pre>
+                    </div>
+                </div>
+
+                <div class="interactive-demo">
+                    <h3>DOM Manipulator</h3>
+                    <div id="domPlayground" style="border: 2px dashed #ddd; padding: 20px; margin: 10px 0; min-height: 100px;">
+                        <p>Click buttons below to manipulate this area</p>
+                    </div>
+                    <div style="display: flex; gap: 10px; margin: 10px 0;">
+                        <button onclick="addElement()" class="button">Add Element</button>
+                        <button onclick="changeColors()" class="button">Change Colors</button>
+                        <button onclick="clearElements()" class="button" style="background: #ef4444;">Clear All</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="async" data-aos="fade-up">
+                <h2 class="lesson-title">Asynchronous JavaScript</h2>
+                <p>Asynchronous programming allows code to run in the background without blocking the main execution thread.</p>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span>Async Examples</span>
+                    </div>
+                    <div class="code-content">
+                        <pre><code class="language-javascript">
+// Promises
+let promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve('Data received!');
+    }, 2000);
+});
+
+promise.then(data => console.log(data))
+       .catch(error => console.error(error));
+
+// Async/Await
+async function fetchData() {
+    try {
+        let response = await fetch('https://api.example.com/data');
+        let data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+// SetTimeout
+setTimeout(() => {
+    console.log('Executed after 2 seconds');
+}, 2000);
+                        </code></pre>
+                    </div>
+                </div>
+
+                <div class="interactive-demo">
+                    <h3>Async Timer Demo</h3>
+                    <button onclick="startTimer()" class="button">Start 3s Timer</button>
+                    <div class="demo-output" id="timerOutput">// Timer status will appear here</div>
+                </div>
+            </section>
+
+            <!-- Add this to your existing script section -->
+            <script>
+                // Array demo
+                let demoArray = [];
+                
+                function addToArray() {
+                    const item = document.getElementById('arrayInput').value;
+                    if (item) {
+                        demoArray.push(item);
+                        updateArrayOutput();
+                        document.getElementById('arrayInput').value = '';
+                    }
+                }
+
+                function removeFromArray() {
+                    demoArray.pop();
+                    updateArrayOutput();
+                }
+
+                function updateArrayOutput() {
+                    document.getElementById('arrayOutput').innerHTML = 
+                        `// Array: [${demoArray.join(', ')}]`;
+                }
+
+                // Object demo
+                function createPerson() {
+                    const name = document.getElementById('personName').value;
+                    const age = document.getElementById('personAge').value;
+                    const city = document.getElementById('personCity').value;
+
+                    const person = {
+                        name: name || 'Unknown',
+                        age: age || 0,
+                        city: city || 'Unknown',
+                        greet() {
+                            return `Hello, I'm ${this.name}!`;
+                        }
+                    };
+
+                    document.getElementById('objectOutput').innerHTML = 
+                        `const person = ${JSON.stringify(person, null, 2)};\n\n` +
+                        `// Greeting:\n${person.greet()}`;
+                }
+
+                // DOM demo
+                let elementCount = 0;
+
+                function addElement() {
+                    elementCount++;
+                    const div = document.createElement('div');
+                    div.textContent = `Element ${elementCount}`;
+                    div.style.padding = '10px';
+                    div.style.margin = '5px';
+                    div.style.background = '#f1f5f9';
+                    div.style.borderRadius = '4px';
+                    document.getElementById('domPlayground').appendChild(div);
+                }
+
+                function changeColors() {
+                    const elements = document.getElementById('domPlayground').children;
+                    for (let element of elements) {
+                        element.style.background = `hsl(${Math.random() * 360}, 70%, 80%)`;
+                    }
+                }
+
+                function clearElements() {
+                    document.getElementById('domPlayground').innerHTML = 
+                        '<p>Click buttons below to manipulate this area</p>';
+                    elementCount = 0;
+                }
+
+                // Async demo
+                function startTimer() {
+                    const output = document.getElementById('timerOutput');
+                    output.innerHTML = '// Timer started...';
+                    
+                    setTimeout(() => {
+                        output.innerHTML += '\n// 1 second passed...';
+                    }, 1000);
+                    
+                    setTimeout(() => {
+                        output.innerHTML += '\n// 2 seconds passed...';
+                    }, 2000);
+                    
+                    setTimeout(() => {
+                        output.innerHTML += '\n// Timer completed!';
+                    }, 3000);
+                }
+            </script>
+   
+
+   <section id="quiz" data-aos="fade-up">
+                <h2 class="lesson-title">JavaScript Quiz</h2>
+                <p>Test your JavaScript knowledge with these questions!</p>
+
+                <style>
+                    .quiz-container {
+                        background: #f8fafc;
+                        padding: 2rem;
+                        border-radius: 15px;
+                        margin: 2rem 0;
+                    }
+
+                    .quiz-question {
+                        background: white;
+                        padding: 1.5rem;
+                        border-radius: 10px;
+                        margin-bottom: 1.5rem;
+                        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+                    }
+
+                    .quiz-options {
+                        display: grid;
+                        gap: 1rem;
+                        margin: 1rem 0;
+                    }
+
+                    .quiz-option {
+                        padding: 1rem;
+                        border: 2px solid #e2e8f0;
+                        border-radius: 8px;
+                        cursor: pointer;
+                        transition: all 0.3s;
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                    }
+
+                    .quiz-option:hover {
+                        border-color: var(--primary);
+                        background: rgba(247, 223, 30, 0.1);
+                    }
+
+                    .quiz-option.correct {
+                        background: #86efac;
+                        border-color: #22c55e;
+                    }
+
+                    .quiz-option.wrong {
+                        background: #fecaca;
+                        border-color: #ef4444;
+                    }
+
+                    .result-message {
+                        margin-top: 1rem;
+                        padding: 1rem;
+                        border-radius: 8px;
+                        font-weight: bold;
+                    }
+
+                    .result-message.correct {
+                        background: #f0fdf4;
+                        color: #166534;
+                    }
+
+                    .result-message.wrong {
+                        background: #fef2f2;
+                        color: #991b1b;
+                    }
+
+                    .quiz-progress {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin-bottom: 1rem;
+                        padding: 1rem;
+                        background: white;
+                        border-radius: 8px;
+                    }
+
+                    .quiz-score {
+                        font-size: 1.2rem;
+                        font-weight: bold;
+                        color: var(--secondary);
+                    }
+                </style>
+
+                <div class="quiz-container">
+                    <div class="quiz-progress">
+                        <div class="quiz-score">Score: <span id="quizScore">0</span>/5</div>
+                        <button onclick="resetQuiz()" class="button">Reset Quiz</button>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h3>1. What is the correct way to declare a variable in JavaScript?</h3>
+                        <div class="quiz-options" data-question="1">
+                            <div class="quiz-option" onclick="checkAnswer(1, 0)">variable = "value";</div>
+                            <div class="quiz-option" onclick="checkAnswer(1, 1)">let variable = "value";</div>
+                            <div class="quiz-option" onclick="checkAnswer(1, 2)">variable := "value";</div>
+                            <div class="quiz-option" onclick="checkAnswer(1, 3)">#variable = "value";</div>
+                        </div>
+                        <div id="result1" class="result-message"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h3>2. Which of these is NOT a JavaScript data type?</h3>
+                        <div class="quiz-options" data-question="2">
+                            <div class="quiz-option" onclick="checkAnswer(2, 0)">String</div>
+                            <div class="quiz-option" onclick="checkAnswer(2, 1)">Number</div>
+                            <div class="quiz-option" onclick="checkAnswer(2, 2)">Float</div>
+                            <div class="quiz-option" onclick="checkAnswer(2, 3)">Boolean</div>
+                        </div>
+                        <div id="result2" class="result-message"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h3>3. What will console.log(2 + "2") output?</h3>
+                        <div class="quiz-options" data-question="3">
+                            <div class="quiz-option" onclick="checkAnswer(3, 0)">4</div>
+                            <div class="quiz-option" onclick="checkAnswer(3, 1)">22</div>
+                            <div class="quiz-option" onclick="checkAnswer(3, 2)">"4"</div>
+                            <div class="quiz-option" onclick="checkAnswer(3, 3)">Error</div>
+                        </div>
+                        <div id="result3" class="result-message"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h3>4. Which method adds an element to the end of an array?</h3>
+                        <div class="quiz-options" data-question="4">
+                            <div class="quiz-option" onclick="checkAnswer(4, 0)">push()</div>
+                            <div class="quiz-option" onclick="checkAnswer(4, 1)">unshift()</div>
+                            <div class="quiz-option" onclick="checkAnswer(4, 2)">pop()</div>
+                            <div class="quiz-option" onclick="checkAnswer(4, 3)">shift()</div>
+                        </div>
+                        <div id="result4" class="result-message"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h3>5. What is the correct way to write a function in JavaScript?</h3>
+                        <div class="quiz-options" data-question="5">
+                            <div class="quiz-option" onclick="checkAnswer(5, 0)">function = myFunction() {}</div>
+                            <div class="quiz-option" onclick="checkAnswer(5, 1)">function myFunction() {}</div>
+                            <div class="quiz-option" onclick="checkAnswer(5, 2)">def myFunction() {}</div>
+                            <div class="quiz-option" onclick="checkAnswer(5, 3)">func myFunction() {}</div>
+                        </div>
+                        <div id="result5" class="result-message"></div>
+                    </div>
+                </div>
+
+                <script>
+                    let score = 0;
+                    const answers = {
+                        1: 1, // let variable = "value";
+                        2: 2, // Float
+                        3: 1, // 22
+                        4: 0, // push()
+                        5: 1  // function myFunction() {}
+                    };
+
+                    function checkAnswer(question, selected) {
+                        const options = document.querySelectorAll(`[data-question="${question}"] .quiz-option`);
+                        const resultDiv = document.getElementById(`result${question}`);
+                        
+                        // Prevent multiple answers
+                        if (options[0].classList.contains('correct') || 
+                            options[0].classList.contains('wrong')) {
+                            return;
+                        }
+
+                        // Clear previous classes
+                        options.forEach(option => {
+                            option.classList.remove('correct', 'wrong');
+                        });
+
+                        if (selected === answers[question]) {
+                            options[selected].classList.add('correct');
+                            resultDiv.innerHTML = "✅ Correct!";
+                            resultDiv.className = "result-message correct";
+                            score++;
+                        } else {
+                            options[selected].classList.add('wrong');
+                            options[answers[question]].classList.add('correct');
+                            resultDiv.innerHTML = "❌ Wrong. Try again!";
+                            resultDiv.className = "result-message wrong";
+                        }
+
+                        updateScore();
+                    }
+
+                    function updateScore() {
+                        document.getElementById('quizScore').textContent = score;
+                    }
+
+                    function resetQuiz() {
+                        score = 0;
+                        updateScore();
+                        
+                        // Reset all questions
+                        document.querySelectorAll('.quiz-option').forEach(option => {
+                            option.classList.remove('correct', 'wrong');
+                        });
+                        
+                        document.querySelectorAll('.result-message').forEach(result => {
+                            result.innerHTML = "";
+                            result.className = "result-message";
+                        });
+                    }
+                </script>
+            </section>
+
+        </main>
+        
+    </div>
+
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+        Prism.highlightAll();
+
+        function showGreeting() {
+            const name = document.getElementById('nameInput').value || "Guest";
+            const output = document.getElementById('demoOutput');
+            output.innerHTML = `// Input name: "${name}"\n` +
+                             `let greeting = greet("${name}");\n` +
+                             `console.log(greeting);\n\n` +
+                             `// Output:\n` +
+                             `Hello, ${name}!`;
+        }
+    </script>
+    
+
+</body>
+</html>
