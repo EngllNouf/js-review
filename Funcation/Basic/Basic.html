@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greeting Example</title>
+</head>
+<body>
+
+    <input type="text" id="name" placeholder="Enter your name">
+    <button id="click">Click</button>
+    <div id="result"></div>
+
+    <script>
+        // Add an event listener to the button
+        document.getElementById("click").addEventListener("click", function() {
+            // Get the value from the input field
+            let name = document.getElementById("name").value;
+
+            // Define the greeting function
+            function greeting() {
+                let message = `Hello ${name}`;
+                return message;
+            }
+
+            // Update the result div with the greeting message
+            document.getElementById("result").innerHTML = greeting();
+        });
+    </script>
+</body>
+</html>
